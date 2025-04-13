@@ -15,8 +15,10 @@ class TextConvertService:
             cls._instance.model = SentenceTransformer('all-MiniLM-L6-v2')
         return cls._instance
 
-    def convertToVector(self, prompt, input_parameters):
-        sentences = nltk.sent_tokenize(prompt)
+    def convertToVector(self, input_parameters: dict) -> None:
+        print(input_parameters["text"])
+        print(input_parameters["user_id"])
+        sentences = nltk.sent_tokenize(input_parameters["text"])
         sentence_vectors = self.model.encode(sentences)
         for i, sentence in enumerate(sentences):
             print(f"Zdanie {i + 1}: {sentence}")
@@ -40,7 +42,7 @@ class TextConvertService:
 
         self.vector_repository.save_vectors(points)
 
-    def get_vector(self, prompt, input_parameters):
+    def get_vector(self, prompt, input_parameters) -> dict:
         search_sentences = nltk.sent_tokenize(prompt)
         search_vectors = self.model.encode(search_sentences)
 
