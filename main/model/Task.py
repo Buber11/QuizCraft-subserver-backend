@@ -72,6 +72,7 @@ class ProcessingTask(Generic[T]):
 
     def set_completed_at(self, completed_at: datetime) -> None:
         self.completedAt = completed_at
+        self.set_expiration_at(completed_at + timedelta(minutes=5))
 
     def set_expiration_at(self, expiration_at: datetime) -> None:
         self.expirationAt = expiration_at

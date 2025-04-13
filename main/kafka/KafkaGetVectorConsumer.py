@@ -15,7 +15,7 @@ load_dotenv()
 kafka_ip_host = os.getenv("kafka_ip_host")
 
 
-class KafkaConsumer:
+class KafkaGetVectorConsumer:
     def __init__(self):
         self.text_convert_service = TextConvertService()
         self.task_manager_service = TaskManagerService()
